@@ -6,18 +6,15 @@ import SerieFormPage from './pages/SerieFormPage';
 import SerieDetailPage from './pages/SerieDetailPage';
 
 export default createStackNavigator({
-    'SerieForm': {
-        screen: SerieFormPage,
-        navigationOptions: "Nova Série"
-    },
-    'Main': {
-        screen: SeriesPage
-    },
+    
     'Login': {
         screen: LoginPage,
         navigationOptions: {
             title: 'Bem Vindo'
         }
+    },
+    'Main': {
+        screen: SeriesPage
     },
     'SerieDetail': {
         screen: SerieDetailPage,
@@ -27,9 +24,20 @@ export default createStackNavigator({
             }
         }
     },
-    
-    
+    'SerieForm': {
+        screen: SerieFormPage,
+        navigationOptions: ({ navigation }) => {
+            if (navigation.state.params && navigation.state.params.serieToEdit)
+                return {
+                    title: navigation.state.params.serieToEdit.title
+                }
 
+
+            return {
+                title: "Nova Série"
+            }
+        }
+    },
 }, {
 
     navigationOptions: {
