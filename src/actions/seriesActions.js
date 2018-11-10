@@ -1,6 +1,5 @@
 import firebase from 'firebase';
 import {Alert} from 'react-native';
-import { reject } from 'rsvp';
 
 export const SET_SERIES = "SET_SERIES";
 const setSeries = series => ({
@@ -16,20 +15,23 @@ export const setWholeSerie = serie => ({
 })
 
 export const watchSeries = () => {
-    const {currentUser} = firebase.auth();
-
     return dispatch => {
-        try{
-            firebase
-                .database()
-                .ref(`/users/${currentUser.uid}/series`)
-                .on('value', snapshot => {
-                    dispatch(setSeries(snapshot.val()))
-                });
-        } catch (e) {
-            console.error('Erro no firebase.', e);
-        }
+        dispatch(setSeries({}))
     }
+    // const {currentUser} = firebase.auth();
+
+    // return dispatch => {
+    //     try{
+    //         firebase
+    //             .database()
+    //             .ref(`/users/${currentUser.uid}/series`)
+    //             .on('value', snapshot => {
+    //                 dispatch(setSeries(snapshot.val()))
+    //             });
+    //     } catch (e) {
+    //         console.error('Erro no firebase.', e);
+    //     }
+    // }
 }
 
 export const deleteSerie = serie => {

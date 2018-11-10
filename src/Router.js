@@ -7,15 +7,16 @@ import SerieDetailPage from './pages/SerieDetailPage';
 
 export default createStackNavigator({
     
+    'Main': {
+        screen: SeriesPage
+    },
     'Login': {
         screen: LoginPage,
         navigationOptions: {
             title: 'Bem Vindo'
         }
     },
-    'Main': {
-        screen: SeriesPage
-    },
+    
     'SerieDetail': {
         screen: SerieDetailPage,
         navigationOptions: ({ navigation }) => {

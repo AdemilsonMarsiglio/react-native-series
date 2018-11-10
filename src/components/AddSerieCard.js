@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 
 
 const AddSerieCard = ({serie, isFirstColumn, onNavigation}) => (
@@ -7,36 +7,29 @@ const AddSerieCard = ({serie, isFirstColumn, onNavigation}) => (
         onPress={onNavigation}
         style={[styles.container, isFirstColumn ? styles.fristColumn : styles.lastColumn]}
     >
-        <View style={styles.card}>
+        <View style={styles.top}>
             <Image 
-                source={require('../../resources/add.png')}
+                source={require('../../resources/plus.png')}
                 style={styles.image}/>
-                
-                <View>
-                    <Text>Aqui</Text>
-                </View>
         </View>
     </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
     container: {
-        width: Dimensions.get("window").width / 2,
-        height: Dimensions.get("window").width / 2,
-        padding: 5
+        width: 50,
+        height: 50,
     },
-    card: {
+    top: {
         flex: 1,
-    },
-    fristColumn: {
-        paddingLeft: 10
-    },
-    lastColumn: {
-        paddingRight: 10
+        backgroundColor: '#8BC34A',
+        borderRadius: 25
     },
     image: {
-        width: '100%',
-        height: '100%',
+        top: '25%',
+        left: '25%',
+        width: '50%',
+        height: '50%',
     }
 });
 

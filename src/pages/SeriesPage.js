@@ -21,24 +21,25 @@ class SeriesPage extends React.Component {
         }
 
         return (
-            <View>
-                <FlatList
+            <View style={styles.container}>
+                {/* <FlatList
                     style={styles.flatList}
-                    data={[...series, { isLast: true }]}
+                    data={series}
                     renderItem={({ item, index }) => (
-                        item.isLast
-                            ? <AddSerieCard
-                                isFirstColumn={index % 2 === 0}
-                                onNavigation={() => navigation.navigate('SerieForm')}
-                            />
-                            : <SerieCard
-                                serie={item}
-                                isFirstColumn={index % 2 === 0}
-                                onNavigation={() => navigation.navigate('SerieDetail', { serie: item })} />
+                        <SerieCard
+                            serie={item}
+                            isFirstColumn={index % 2 === 0}
+                            onNavigation={() => navigation.navigate('SerieDetail', { serie: item })} />
                     )}
                     keyExtractor={({ id }) => id}
                     numColumns={2}
-                />
+                /> */}
+
+                <View style={styles.addSerieCard}>
+                    <AddSerieCard
+                        onNavigation={() => navigation.navigate('SerieForm')}
+                    />
+                </View>
             </View>
         )
 
@@ -47,10 +48,20 @@ class SeriesPage extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     flatList: {
         marginBottom: 5,
         marginTop: 5,
     },
+
+    addSerieCard: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        borderRadius: 25,
+    }
 
 })
 
