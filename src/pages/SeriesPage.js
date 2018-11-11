@@ -22,8 +22,8 @@ class SeriesPage extends React.Component {
 
         return (
             <View style={styles.container}>
-                {/* <FlatList
-                    style={styles.flatList}
+                <FlatList
+                    contentContainerStyle={styles.flatList}
                     data={series}
                     renderItem={({ item, index }) => (
                         <SerieCard
@@ -33,9 +33,9 @@ class SeriesPage extends React.Component {
                     )}
                     keyExtractor={({ id }) => id}
                     numColumns={2}
-                /> */}
+                />
 
-                <View style={styles.addSerieCard}>
+                <View elevation={5} style={styles.addSerieCard}>
                     <AddSerieCard
                         onNavigation={() => navigation.navigate('SerieForm')}
                     />
@@ -52,8 +52,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     flatList: {
-        marginBottom: 5,
-        marginTop: 5,
+        paddingBottom: 70,
     },
 
     addSerieCard: {

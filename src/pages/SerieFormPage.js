@@ -25,6 +25,7 @@ class SerieFormPage extends React.Component {
         this.state = {
             isLoading:  false
         }
+        this.inputs = {};
     }
 
     componentDidMount() {
@@ -37,6 +38,10 @@ class SerieFormPage extends React.Component {
             resetForm();
         }
     }
+
+    focusNextField(id) {
+        this.inputs[id].focus();
+    }
     
     render() {
         const {serieForm, setField, saveSerie, navigation} = this.props;
@@ -47,13 +52,21 @@ class SerieFormPage extends React.Component {
                 behavior="padding" 
                 keyboardVerticalOffset={250}
             >
-                <ScrollView>
+                <ScrollView
+                    keyboardShouldPersistTaps='handled'>
                     <FormRow>
                         <TextInput first
                             style={styles.input}
                             placeholder="Titulo"
                             value={serieForm.title}
                             onChangeText={value => setField("title", value)}
+                            ref={ input => {
+                                this.inputs['title'] = input;
+                            }}
+                            returnKeyType={ "next" }
+                            onSubmitEditing={() => {
+                                this.focusNextField('img');
+                            }}
                         />
                     </FormRow>
                     <FormRow>
@@ -62,12 +75,20 @@ class SerieFormPage extends React.Component {
                             placeholder="URL da Imagem"
                             value={serieForm.img}
                             onChangeText={value => setField("img", value)}
+                            ref={ input => {
+                                this.inputs['img'] = input;
+                            }}
+                            returnKeyType={ "next" }
                         />
                     </FormRow>
                     <FormRow>
                         <Picker
                             selectedValue={serieForm.gender}
-                            onValueChange={itemValue => setField("gender", itemValue)}>
+                            onValueChange={itemValue => setField("gender", itemValue)}
+                            ref={ input => {
+                                this.inputs['gender'] = input;
+                            }}
+                        >
                             <Picker.Item label="Ação" value="acao" />
                             <Picker.Item label="Comedia" value="comedy" />
                             <Picker.Item label="Terror" value="horror" />
@@ -98,6 +119,9 @@ class SerieFormPage extends React.Component {
                             onChangeText={value => setField("description", value)}
                             numberOfLines={5}
                             multiline
+                            ref={ input => {
+                                this.inputs['description'] = input;
+                            }}
                         />
                     </FormRow>
         

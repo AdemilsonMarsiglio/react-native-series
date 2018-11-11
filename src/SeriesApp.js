@@ -14,10 +14,14 @@ const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(reduxThunk)
 ));
 
-const SeriesApp = prop => (
-    <Provider store={store}>
-        <Router />
-    </Provider>  
-);
+class SeriesApp extends React.Component{
+    render() {
+        return (
+            <Provider store={store}>
+                <Router />
+            </Provider>  
+        )
+    }
+}
 
 export default SeriesApp;

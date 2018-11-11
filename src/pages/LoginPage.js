@@ -17,6 +17,7 @@ class LoginPage extends React.Component {
             isLoading: false,
             message: ''
         }
+        this.inputs = {};
     }
 
     componentDidMount() {
@@ -98,15 +99,28 @@ class LoginPage extends React.Component {
         </View>)
     }
 
+    focusNextField(id) {
+        this.inputs[id].focus();
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <FormRow first>
                     <TextInput
+                        keyboardType={"email-address"}
+                        autoFocus={true}
                         style={styles.input}
                         placeholder="user@mail.com"
                         value={this.state.mail}
+                        returnKeyType={"next"}
                         onChangeText={value => this.onChangeHandler('mail', value)}
+                        ref={ input => {
+                            this.inputs['one'] = input;
+                        }}
+                        onSubmitEditing={() => {
+                            this.focusNextField('two');
+                        }}
                     />
                 </FormRow>
                 <FormRow last>
@@ -116,6 +130,9 @@ class LoginPage extends React.Component {
                         secureTextEntry
                         value={this.state.password}
                         onChangeText={value => this.onChangeHandler('password', value)}
+                        ref={ input => {
+                            this.inputs['two'] = input;
+                        }}
                     />
                 </FormRow>
 

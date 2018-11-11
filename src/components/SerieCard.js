@@ -4,7 +4,10 @@ import {View, Text, Image, TouchableOpacity, StyleSheet, Dimensions} from 'react
 const SerieCard = ({serie, isFirstColumn, onNavigation}) => (
     <TouchableOpacity 
         onPress={onNavigation}
-        style={[styles.container, isFirstColumn ? styles.fristColumn : styles.lastColumn]}
+        style={[
+            styles.container, 
+            isFirstColumn ? styles.fristColumn : styles.lastColumn
+        ]}
     >
         <View style={styles.card}>
             {
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
     },
     lastColumn: {
         paddingRight: 10
-    },
+    }
 });
 
 export default SerieCard;
